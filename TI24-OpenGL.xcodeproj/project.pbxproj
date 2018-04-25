@@ -10,6 +10,8 @@
 		68659EC720907B4B00117AD4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68659EC620907B4B00117AD4 /* main.cpp */; };
 		68659ECF20907EE200117AD4 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68659ECE20907EE200117AD4 /* GLUT.framework */; };
 		68659ED22090812200117AD4 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68659ED0209080D500117AD4 /* OpenGL.framework */; };
+		68659ED52090AD0100117AD4 /* Shape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68659ED32090AD0100117AD4 /* Shape.cpp */; };
+		68659EDD2090C75700117AD4 /* Vec3f.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68659EDB2090C75700117AD4 /* Vec3f.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +31,10 @@
 		68659EC620907B4B00117AD4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		68659ECE20907EE200117AD4 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		68659ED0209080D500117AD4 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		68659ED32090AD0100117AD4 /* Shape.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Shape.cpp; sourceTree = "<group>"; };
+		68659ED42090AD0100117AD4 /* Shape.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Shape.hpp; sourceTree = "<group>"; };
+		68659EDB2090C75700117AD4 /* Vec3f.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vec3f.cpp; sourceTree = "<group>"; };
+		68659EDC2090C75700117AD4 /* Vec3f.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vec3f.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +71,10 @@
 			isa = PBXGroup;
 			children = (
 				68659EC620907B4B00117AD4 /* main.cpp */,
+				68659ED32090AD0100117AD4 /* Shape.cpp */,
+				68659ED42090AD0100117AD4 /* Shape.hpp */,
+				68659EDB2090C75700117AD4 /* Vec3f.cpp */,
+				68659EDC2090C75700117AD4 /* Vec3f.hpp */,
 			);
 			path = "TI24-OpenGL";
 			sourceTree = "<group>";
@@ -135,6 +145,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				68659EC720907B4B00117AD4 /* main.cpp in Sources */,
+				68659ED52090AD0100117AD4 /* Shape.cpp in Sources */,
+				68659EDD2090C75700117AD4 /* Vec3f.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
