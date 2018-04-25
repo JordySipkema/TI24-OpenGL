@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		68659EC720907B4B00117AD4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68659EC620907B4B00117AD4 /* main.cpp */; };
+		68659ECF20907EE200117AD4 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68659ECE20907EE200117AD4 /* GLUT.framework */; };
+		68659ED22090812200117AD4 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68659ED0209080D500117AD4 /* OpenGL.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,8 @@
 /* Begin PBXFileReference section */
 		68659EC320907B4B00117AD4 /* TI24-OpenGL */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "TI24-OpenGL"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68659EC620907B4B00117AD4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		68659ECE20907EE200117AD4 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		68659ED0209080D500117AD4 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +36,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68659ED22090812200117AD4 /* OpenGL.framework in Frameworks */,
+				68659ECF20907EE200117AD4 /* GLUT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +49,7 @@
 			children = (
 				68659EC520907B4B00117AD4 /* TI24-OpenGL */,
 				68659EC420907B4B00117AD4 /* Products */,
+				68659ECD20907EE200117AD4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +67,15 @@
 				68659EC620907B4B00117AD4 /* main.cpp */,
 			);
 			path = "TI24-OpenGL";
+			sourceTree = "<group>";
+		};
+		68659ECD20907EE200117AD4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				68659ED0209080D500117AD4 /* OpenGL.framework */,
+				68659ECE20907EE200117AD4 /* GLUT.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,6 +253,7 @@
 		68659ECB20907B4B00117AD4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_STYLE = Automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -245,6 +262,7 @@
 		68659ECC20907B4B00117AD4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_STYLE = Automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
