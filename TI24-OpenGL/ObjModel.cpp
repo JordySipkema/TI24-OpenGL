@@ -119,6 +119,8 @@ ObjModel::ObjModel(const std::string &fileName)
         dirName = dirName.substr(0, dirName.rfind("\\"));
     if(fileName == dirName)
         dirName = "";
+    if(dirName == "/")
+        dirName = "";
     
     
     std::ifstream pFile(fileName.c_str());
@@ -229,11 +231,28 @@ void ObjModel::draw()
 {
     for(ObjGroup *group: groups)
     {
+        // If: hasColor and NOT hasTexture
+        if ((materials[(*group).materialIndex])->hasColor && !(materials[(*group).materialIndex])->hasTexture) {
+            glColor3f((materials[(*group).materialIndex])->color->getRed(), (materials[(*group).materialIndex])->color->getGreen(), (materials[(*group).materialIndex])->color->getBlue());
+        }
+        // Else if: NOT hasColor and hasTexture
+        else if ((materials[(*group).materialIndex])->hasTexture)
+        {
+            glEnable(GL_TEXTURE_2D);
+            (materials[(*group).materialIndex])->texture.loadTexture();
+        }
+        // Else if: NOT hasColor and NOT hasTexture
+        else
+        {
+            glDisable(GL_TEXTURE_2D);
+        }
+        
+        // Start drawing object:
         glBegin(GL_TRIANGLES);
         for (Face f: group->faces){
             for(std::list<Vertex>::iterator it = f.vertices.begin(); it != f.vertices.end(); ++it){
-                glTexCoord2f(texcoords[it->texcoord].x, texcoords[it->texcoord].y);
                 glNormal3f(normals[it->normal].x, normals[it->normal].y, normals[it->normal].z);
+                glTexCoord2f(texcoords[it->texcoord].x, texcoords[it->texcoord].y);
                 glVertex3f(vertices[it->position].x, vertices[it->position].y, vertices[it->position].z);
             }
         }
@@ -249,8 +268,15 @@ void ObjModel::draw()
 
 void ObjModel::loadMaterialFile( const std::string &fileName, const std::string &dirName )
 {
+    std::string strippedFileName = fileName.c_str();
+    
+    if (!fileName.empty() && fileName[fileName.size() -1] == '\r')
+        strippedFileName = fileName.substr(0, fileName.size()-1);
+    
     std::cout << "Loading " << fileName << std::endl;
-    std::ifstream pFile(fileName.c_str());
+    
+    std::ifstream pFile(strippedFileName.c_str());
+    
     if (!pFile.is_open())
     {
         std::cout << "Could not open file " << fileName << std::endl;
@@ -270,64 +296,88 @@ void ObjModel::loadMaterialFile( const std::string &fileName, const std::string 
         std::vector<std::string> params = split(line, " ");
         params[0] = toLower(params[0]);
         
-if (params[0] == "newmtl")
-{
-    if(currentMaterial != NULL)
+    if (params[0] == "newmtl")
     {
-        materials.push_back(currentMaterial);
+        if(currentMaterial != NULL)
+        {
+            materials.push_back(currentMaterial);
+        }
+        currentMaterial = new MaterialInfo();
+        currentMaterial->name = params[1];
+    //    currentMaterial->hasTexture = true;
+    //    currentMaterial->texture = texture_loader(params[1]);
+    //    currentMaterial->texture.initTexture();
     }
-    currentMaterial = new MaterialInfo();
-    currentMaterial->name = params[1];
-}
-else if(params[0] == "map_kd")
-{
-    currentMaterial->hasTexture = true;
-    std::string texPath = dirName + "/" + params[1];
-    currentMaterial->texture = texture_loader(texPath.c_str());
-//    std::string tex = params[1];
-//    if (tex.find("/"))
-//        tex = tex.substr(tex.rfind("/") + 1);
-//        if (tex.find("\\"))
-//            tex = tex.substr(tex.rfind("\\") + 1);
-//            //currentMaterial->texture = new Texture(DIR + "/" + tex);
-//            //TODO
-//            currentMaterial->texture = new Texture(dirName + "/" + tex);
-}
-else if (params[0] == "kd")
-{//TODO, diffuse color
-}
-else if (params[0] == "ka")
-{//TODO, ambient color
-}
-else if (params[0] == "ks")
-{//TODO, specular color
-}
-else if (
-         params[0] == "illum" ||
-         params[0] == "map_bump" ||
-         params[0] == "map_ke" ||
-         params[0] == "map_ka" ||
-         params[0] == "map_d" ||
-         params[0] == "d" ||
-         params[0] == "ke" ||
-         params[0] == "ns" ||
-         params[0] == "ni" ||
-         params[0] == "td" ||
-         params[0] == "tf" ||
-         params[0] == "tr" ||
-         false)
-{
-    //these values are usually not used for rendering at this time, so ignore them
-}
-else
-std::cout<<"Didn't parse "<<params[0]<<" in material file"<<std::endl;
-}
-if(currentMaterial != NULL)
-materials.push_back(currentMaterial);
+    else if(params[0] == "map_kd")
+    {
+        currentMaterial->hasTexture = true;
+        currentMaterial->texture = texture_loader(params[1]);
+        currentMaterial->texture.initTexture();
+    //    std::string tex = params[1];
+    //    if (tex.find("/"))
+    //        tex = tex.substr(tex.rfind("/") + 1);
+    //        if (tex.find("\\"))
+    //            tex = tex.substr(tex.rfind("\\") + 1);
+    //            //currentMaterial->texture = new Texture(DIR + "/" + tex);
+    //            //TODO
+    //            currentMaterial->texture = new Texture(dirName + "/" + tex);
+    }
+    else if (params[0] == "kd"){
+        currentMaterial->hasColor = true;
+        currentMaterial->color = new ObjColor(atof(params[1].c_str()), atof(params[2].c_str()), atof(params[3].c_str()));
+    }
+    else if (params[0] == "ka")
+    {//TODO, ambient color
+    }
+    else if (params[0] == "ks")
+    {//TODO, specular color
+    }
+    else if (
+             params[0] == "illum" ||
+             params[0] == "map_bump" ||
+             params[0] == "map_ke" ||
+             params[0] == "map_ka" ||
+             params[0] == "map_d" ||
+             params[0] == "d" ||
+             params[0] == "ke" ||
+             params[0] == "ns" ||
+             params[0] == "ni" ||
+             params[0] == "td" ||
+             params[0] == "tf" ||
+             params[0] == "tr" ||
+             false)
+    {
+        //these values are usually not used for rendering at this time, so ignore them
+    }
+    else
+    std::cout<<"Didn't parse "<<params[0]<<" in material file"<<std::endl;
+    }
+    if(currentMaterial != NULL)
+    materials.push_back(currentMaterial);
 
 }
-
 ObjModel::MaterialInfo::MaterialInfo()
 {
     hasTexture = false;
+}
+
+ObjModel::ObjColor::ObjColor(float red, float green, float blue)
+    : red(red), green(green), blue(blue)
+{
+}
+
+void ObjModel::ObjColor::setColors(float red, float green, float blue) {
+    this->red = red;
+    this->green = green;
+    this->blue = blue;
+}
+
+float ObjModel::ObjColor::getRed() {
+    return this->red;
+}
+float ObjModel::ObjColor::getGreen() {
+    return this->green;
+}
+float ObjModel::ObjColor::getBlue() {
+    return this->blue;
 }

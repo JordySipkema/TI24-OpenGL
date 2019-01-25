@@ -30,11 +30,26 @@ private:
         int texcoord;
     };
     
+    class ObjColor {
+    private:
+        float red;
+        float green;
+        float blue;
+    public:
+        ObjColor(float red, float green, float blue);
+        void setColors(float red, float green, float blue);
+        float getRed();
+        float getGreen();
+        float getBlue();
+    };
+    
     class Face
     {
     public:
         std::list<Vertex> vertices;
     };
+    
+    
     class MaterialInfo
     {
     public:
@@ -42,6 +57,8 @@ private:
         std::string name;
         texture_loader texture;
         bool hasTexture;
+        ObjColor* color;
+        bool hasColor;
     };
     
     class ObjGroup

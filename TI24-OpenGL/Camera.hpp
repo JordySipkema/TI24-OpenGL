@@ -25,7 +25,7 @@
 class Camera
 {
 private:
-    float eyeposVer = 1.2f; //In vertical plane: y          
+    float eyeposVer = 10.2f; //In vertical plane: y          
     float eyeposHor = 0.0f; //In horizontal plane: x and z
     float cameraCenterX = 0.0f;
     float cameraCenterY = 0.0f;

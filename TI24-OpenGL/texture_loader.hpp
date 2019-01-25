@@ -23,6 +23,7 @@ public:
     texture_loader(std::string);
     texture_loader();
     void getTexture(double, double);
+    void loadTexture(void);
     void initTexture(void);
     void stashTexture(void);
 };

@@ -12,19 +12,24 @@
 #define GL_SILENCE_DEPRECATION // Silence the OpenGL/Glut deprecation warnings.
 
 #include <stdio.h>
+#include <vector>
 #include <GLUT/glut.h>
 #include "glm/glm.hpp"
+#include "GameObjects/GameObject.hpp"
 
 class SpaceBlasters
 {
     
 public:
+    GameObject* spaceship;
+    //std::vector<GameObject*> gameObjects;
+    
     SpaceBlasters();
     
     void initGame(void);
     
     void draw(void);
-    void update(void);
+    void update(int ticks);
     
     void keyboard(unsigned char key, int x, int y);
 };
