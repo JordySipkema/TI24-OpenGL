@@ -7,28 +7,88 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6802CA4921F1033900922845 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6802CA4721F1033900922845 /* GameObject.cpp */; };
+		6802F0FB21C83F8D001CF6FC /* texture_loader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6802F0F921C83F8D001CF6FC /* texture_loader.cpp */; };
+		6802F0FE21C840D7001CF6FC /* Keyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6802F0FC21C840D7001CF6FC /* Keyboard.cpp */; };
+		6802F11E21C84B05001CF6FC /* terrain.png in Copy Files */ = {isa = PBXBuildFile; fileRef = 6802F11321C844EA001CF6FC /* terrain.png */; };
+		6802F11F21C84B0F001CF6FC /* PRIMsoil.png in Copy Files */ = {isa = PBXBuildFile; fileRef = 6802F10B21C844DA001CF6FC /* PRIMsoil.png */; };
+		6802F12021C84B0F001CF6FC /* PrimroseP.mtl in Copy Files */ = {isa = PBXBuildFile; fileRef = 6802F10C21C844DA001CF6FC /* PrimroseP.mtl */; };
+		6802F12121C84B0F001CF6FC /* PRIM1L2.png in Copy Files */ = {isa = PBXBuildFile; fileRef = 6802F10D21C844DA001CF6FC /* PRIM1L2.png */; };
+		6802F12221C84B0F001CF6FC /* vase.png in Copy Files */ = {isa = PBXBuildFile; fileRef = 6802F10E21C844DA001CF6FC /* vase.png */; };
+		6802F12321C84B0F001CF6FC /* PRIM1L3.png in Copy Files */ = {isa = PBXBuildFile; fileRef = 6802F10F21C844DA001CF6FC /* PRIM1L3.png */; };
+		6802F12421C84B0F001CF6FC /* PRIM1P.png in Copy Files */ = {isa = PBXBuildFile; fileRef = 6802F11021C844DA001CF6FC /* PRIM1P.png */; };
+		6802F12521C84B0F001CF6FC /* PRIM1ST.png in Copy Files */ = {isa = PBXBuildFile; fileRef = 6802F11121C844DA001CF6FC /* PRIM1ST.png */; };
+		684A0C7720D7F09700C6BDC4 /* glm in Frameworks */ = {isa = PBXBuildFile; fileRef = 684A0B6420D7EF8500C6BDC4 /* glm */; };
+		684A0C7A20D8052300C6BDC4 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 684A0C7820D8052300C6BDC4 /* Camera.cpp */; };
+		684A0C7C20D869E800C6BDC4 /* ObjModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 684A0C7B20D869E800C6BDC4 /* ObjModel.cpp */; };
+		684A0C8020D86CF400C6BDC4 /* Vec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 684A0C7E20D86CF400C6BDC4 /* Vec.cpp */; };
 		68659EC720907B4B00117AD4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68659EC620907B4B00117AD4 /* main.cpp */; };
 		68659ECF20907EE200117AD4 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68659ECE20907EE200117AD4 /* GLUT.framework */; };
 		68659ED22090812200117AD4 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68659ED0209080D500117AD4 /* OpenGL.framework */; };
+		68E28F6D20D7D3D4008D533B /* SpaceBlasters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68E28F6B20D7D3D4008D533B /* SpaceBlasters.cpp */; };
+		68E28F7020D7D4CF008D533B /* SpaceShip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68E28F6E20D7D4CF008D533B /* SpaceShip.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		68659EC120907B4B00117AD4 /* CopyFiles */ = {
+		6802F11D21C84AF5001CF6FC /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			dstPath = "";
+			dstSubfolderSpec = 7;
 			files = (
+				6802F11F21C84B0F001CF6FC /* PRIMsoil.png in Copy Files */,
+				6802F12021C84B0F001CF6FC /* PrimroseP.mtl in Copy Files */,
+				6802F12121C84B0F001CF6FC /* PRIM1L2.png in Copy Files */,
+				6802F12221C84B0F001CF6FC /* vase.png in Copy Files */,
+				6802F12321C84B0F001CF6FC /* PRIM1L3.png in Copy Files */,
+				6802F12421C84B0F001CF6FC /* PRIM1P.png in Copy Files */,
+				6802F12521C84B0F001CF6FC /* PRIM1ST.png in Copy Files */,
+				6802F11E21C84B05001CF6FC /* terrain.png in Copy Files */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			name = "Copy Files";
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6802CA4721F1033900922845 /* GameObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
+		6802CA4C21F105F000922845 /* GameObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameObject.hpp; sourceTree = "<group>"; };
+		6802F0F921C83F8D001CF6FC /* texture_loader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = texture_loader.cpp; sourceTree = "<group>"; };
+		6802F0FA21C83F8D001CF6FC /* texture_loader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = texture_loader.hpp; sourceTree = "<group>"; };
+		6802F0FC21C840D7001CF6FC /* Keyboard.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Keyboard.cpp; sourceTree = "<group>"; };
+		6802F0FD21C840D7001CF6FC /* Keyboard.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Keyboard.hpp; sourceTree = "<group>"; };
+		6802F10B21C844DA001CF6FC /* PRIMsoil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PRIMsoil.png; sourceTree = "<group>"; };
+		6802F10C21C844DA001CF6FC /* PrimroseP.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PrimroseP.mtl; sourceTree = "<group>"; };
+		6802F10D21C844DA001CF6FC /* PRIM1L2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PRIM1L2.png; sourceTree = "<group>"; };
+		6802F10E21C844DA001CF6FC /* vase.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vase.png; sourceTree = "<group>"; };
+		6802F10F21C844DA001CF6FC /* PRIM1L3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PRIM1L3.png; sourceTree = "<group>"; };
+		6802F11021C844DA001CF6FC /* PRIM1P.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PRIM1P.png; sourceTree = "<group>"; };
+		6802F11121C844DA001CF6FC /* PRIM1ST.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PRIM1ST.png; sourceTree = "<group>"; };
+		6802F11321C844EA001CF6FC /* terrain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terrain.png; sourceTree = "<group>"; };
+		682BD77621F4C55D00AA8367 /* spaceship_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spaceship_texture.png; sourceTree = "<group>"; };
+		682C116520EADE4700B1C62F /* stb_image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
+		684A0B6420D7EF8500C6BDC4 /* glm */ = {isa = PBXFileReference; lastKnownFileType = folder; name = glm; path = ../../../../usr/local/Cellar/glm/0.9.9.0/include/glm; sourceTree = "<group>"; };
+		684A0C7820D8052300C6BDC4 /* Camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
+		684A0C7920D8052300C6BDC4 /* Camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
+		684A0C7B20D869E800C6BDC4 /* ObjModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ObjModel.cpp; sourceTree = "<group>"; };
+		684A0C7D20D86CB000C6BDC4 /* ObjModel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ObjModel.hpp; sourceTree = "<group>"; };
+		684A0C7E20D86CF400C6BDC4 /* Vec.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vec.cpp; sourceTree = "<group>"; };
+		684A0C7F20D86CF400C6BDC4 /* Vec.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vec.hpp; sourceTree = "<group>"; };
+		68614DB021F4D6D30085FAC5 /* spacecraft.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = spacecraft.obj; sourceTree = "<group>"; };
+		68614DB121F4D6D30085FAC5 /* spacecraft.obj.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = spacecraft.obj.mtl; sourceTree = "<group>"; };
+		68614DB221F4D6E70085FAC5 /* spacecraft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spacecraft.png; sourceTree = "<group>"; };
+		68614DB421F653830085FAC5 /* Fighter_Ship_wings_diffuse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Fighter_Ship_wings_diffuse.jpg; sourceTree = "<group>"; };
+		68614DB521F653830085FAC5 /* 13897_Sci-Fi_Fighter_Ship_v1_l1.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "13897_Sci-Fi_Fighter_Ship_v1_l1.obj"; sourceTree = "<group>"; };
+		68614DB621F653830085FAC5 /* Fighter_Ship_body_diffuse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Fighter_Ship_body_diffuse.jpg; sourceTree = "<group>"; };
+		68614DB721F653830085FAC5 /* 13897_Sci-Fi_Fighter_Ship_v1_l1.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "13897_Sci-Fi_Fighter_Ship_v1_l1.mtl"; sourceTree = "<group>"; };
 		68659EC320907B4B00117AD4 /* TI24-OpenGL */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "TI24-OpenGL"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68659EC620907B4B00117AD4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		68659ECE20907EE200117AD4 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		68659ED0209080D500117AD4 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		68E28F6B20D7D3D4008D533B /* SpaceBlasters.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SpaceBlasters.cpp; sourceTree = "<group>"; };
+		68E28F6C20D7D3D4008D533B /* SpaceBlasters.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SpaceBlasters.hpp; sourceTree = "<group>"; };
+		68E28F6E20D7D4CF008D533B /* SpaceShip.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SpaceShip.cpp; sourceTree = "<group>"; };
+		68E28F6F20D7D4CF008D533B /* SpaceShip.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SpaceShip.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				684A0C7720D7F09700C6BDC4 /* glm in Frameworks */,
 				68659ED22090812200117AD4 /* OpenGL.framework in Frameworks */,
 				68659ECF20907EE200117AD4 /* GLUT.framework in Frameworks */,
 			);
@@ -44,6 +105,81 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6802CA4321E3FB9F00922845 /* spacecraft */ = {
+			isa = PBXGroup;
+			children = (
+				68614DB021F4D6D30085FAC5 /* spacecraft.obj */,
+				68614DB121F4D6D30085FAC5 /* spacecraft.obj.mtl */,
+			);
+			path = spacecraft;
+			sourceTree = "<group>";
+		};
+		6802CA4A21F104EB00922845 /* GameObjects */ = {
+			isa = PBXGroup;
+			children = (
+				6802CA4C21F105F000922845 /* GameObject.hpp */,
+				6802CA4721F1033900922845 /* GameObject.cpp */,
+				68E28F6E20D7D4CF008D533B /* SpaceShip.cpp */,
+				68E28F6F20D7D4CF008D533B /* SpaceShip.hpp */,
+			);
+			path = GameObjects;
+			sourceTree = "<group>";
+		};
+		6802CA4B21F1054B00922845 /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				6802F0F921C83F8D001CF6FC /* texture_loader.cpp */,
+				6802F0FA21C83F8D001CF6FC /* texture_loader.hpp */,
+				684A0C7B20D869E800C6BDC4 /* ObjModel.cpp */,
+				684A0C7D20D86CB000C6BDC4 /* ObjModel.hpp */,
+				682C116520EADE4700B1C62F /* stb_image.h */,
+			);
+			name = Graphics;
+			sourceTree = "<group>";
+		};
+		6802CA4D21F1425700922845 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				684A0C7E20D86CF400C6BDC4 /* Vec.cpp */,
+				684A0C7F20D86CF400C6BDC4 /* Vec.hpp */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		6802F0FF21C84403001CF6FC /* models */ = {
+			isa = PBXGroup;
+			children = (
+				68614DB321F653830085FAC5 /* fightership */,
+				6802F10A21C844DA001CF6FC /* bloemetje */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		6802F10A21C844DA001CF6FC /* bloemetje */ = {
+			isa = PBXGroup;
+			children = (
+				6802F10B21C844DA001CF6FC /* PRIMsoil.png */,
+				6802F10C21C844DA001CF6FC /* PrimroseP.mtl */,
+				6802F10D21C844DA001CF6FC /* PRIM1L2.png */,
+				6802F10E21C844DA001CF6FC /* vase.png */,
+				6802F10F21C844DA001CF6FC /* PRIM1L3.png */,
+				6802F11021C844DA001CF6FC /* PRIM1P.png */,
+				6802F11121C844DA001CF6FC /* PRIM1ST.png */,
+			);
+			path = bloemetje;
+			sourceTree = "<group>";
+		};
+		68614DB321F653830085FAC5 /* fightership */ = {
+			isa = PBXGroup;
+			children = (
+				68614DB421F653830085FAC5 /* Fighter_Ship_wings_diffuse.jpg */,
+				68614DB521F653830085FAC5 /* 13897_Sci-Fi_Fighter_Ship_v1_l1.obj */,
+				68614DB621F653830085FAC5 /* Fighter_Ship_body_diffuse.jpg */,
+				68614DB721F653830085FAC5 /* 13897_Sci-Fi_Fighter_Ship_v1_l1.mtl */,
+			);
+			path = fightership;
+			sourceTree = "<group>";
+		};
 		68659EBA20907B4B00117AD4 = {
 			isa = PBXGroup;
 			children = (
@@ -64,7 +200,21 @@
 		68659EC520907B4B00117AD4 /* TI24-OpenGL */ = {
 			isa = PBXGroup;
 			children = (
+				68614DB221F4D6E70085FAC5 /* spacecraft.png */,
+				682BD77621F4C55D00AA8367 /* spaceship_texture.png */,
+				6802CA4D21F1425700922845 /* Helpers */,
+				6802CA4B21F1054B00922845 /* Graphics */,
+				6802CA4A21F104EB00922845 /* GameObjects */,
+				6802CA4321E3FB9F00922845 /* spacecraft */,
+				6802F11321C844EA001CF6FC /* terrain.png */,
+				6802F0FF21C84403001CF6FC /* models */,
 				68659EC620907B4B00117AD4 /* main.cpp */,
+				68E28F6B20D7D3D4008D533B /* SpaceBlasters.cpp */,
+				68E28F6C20D7D3D4008D533B /* SpaceBlasters.hpp */,
+				684A0C7820D8052300C6BDC4 /* Camera.cpp */,
+				684A0C7920D8052300C6BDC4 /* Camera.hpp */,
+				6802F0FC21C840D7001CF6FC /* Keyboard.cpp */,
+				6802F0FD21C840D7001CF6FC /* Keyboard.hpp */,
 			);
 			path = "TI24-OpenGL";
 			sourceTree = "<group>";
@@ -72,6 +222,7 @@
 		68659ECD20907EE200117AD4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				684A0B6420D7EF8500C6BDC4 /* glm */,
 				68659ED0209080D500117AD4 /* OpenGL.framework */,
 				68659ECE20907EE200117AD4 /* GLUT.framework */,
 			);
@@ -87,7 +238,7 @@
 			buildPhases = (
 				68659EBF20907B4B00117AD4 /* Sources */,
 				68659EC020907B4B00117AD4 /* Frameworks */,
-				68659EC120907B4B00117AD4 /* CopyFiles */,
+				6802F11D21C84AF5001CF6FC /* Copy Files */,
 			);
 			buildRules = (
 			);
@@ -134,7 +285,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				684A0C8020D86CF400C6BDC4 /* Vec.cpp in Sources */,
+				6802F0FE21C840D7001CF6FC /* Keyboard.cpp in Sources */,
+				6802F0FB21C83F8D001CF6FC /* texture_loader.cpp in Sources */,
+				6802CA4921F1033900922845 /* GameObject.cpp in Sources */,
+				684A0C7A20D8052300C6BDC4 /* Camera.cpp in Sources */,
+				68E28F6D20D7D3D4008D533B /* SpaceBlasters.cpp in Sources */,
 				68659EC720907B4B00117AD4 /* main.cpp in Sources */,
+				684A0C7C20D869E800C6BDC4 /* ObjModel.cpp in Sources */,
+				68E28F7020D7D4CF008D533B /* SpaceShip.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,8 +412,11 @@
 		68659ECB20907B4B00117AD4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = /usr/local/Cellar/glm/0.9.9.0/include/glm;
+				OTHER_LDFLAGS = "-v";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -262,8 +424,11 @@
 		68659ECC20907B4B00117AD4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = /usr/local/Cellar/glm/0.9.9.0/include/glm;
+				OTHER_LDFLAGS = "-v";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
