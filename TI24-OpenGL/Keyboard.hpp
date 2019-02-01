@@ -11,14 +11,19 @@
 
 #include <stdio.h>
 #include <iostream>
-#include "Camera.hpp"
 
-void glutSpecial(int key, int x, int y);
-void glutSpecialUp(int key, int x, int y);
-void glutKeyboardUp(unsigned char key, int x, int y);
-void glutKeyboard(unsigned char key, int x, int y);
-void glutKeyboardUp(unsigned char, int, int);
-void glutKeyboard(unsigned char, int, int);
-void KeyboardIdle(double const &ticks, Camera);
+class Keyboard
+{
+public:
+    Keyboard();
+    bool specKeys[256] = { [0 ... 255] = false };
+    bool keys[256]= { [0 ... 255] = false };
+    
+    void glutSpecial(int key, int x, int y);
+    void glutSpecialUp(int key, int x, int y);
+    void glutKeyboardUp(unsigned char key, int x, int y);
+    void glutKeyboard(unsigned char key, int x, int y);
+    void KeyboardIdle(double const &ticks);
+};
 
 #endif /* Keyboard_hpp */

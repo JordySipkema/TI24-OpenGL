@@ -7,19 +7,52 @@
 //
 
 #include "GameObject.hpp"
+#include "Enumerator.hpp"
 
-GameObject::GameObject(Vec3f position, Vec4f rotation, int scaleFactor, std::string model) : position(position), rotation(rotation), scaleFactor(scaleFactor) {
-    objModel = new ObjModel(model);
+GameObject::GameObject(int scaleFactor, std::string model) : scaleFactor(scaleFactor) {
+    if (model != ""){
+        objModel = new ObjModel(model);
+    }
 }
 
-void GameObject::Draw(void){
+GameObject::GameObject(GameObjectParams* initialLocation, int scaleFactor, std::string model) : scaleFactor(scaleFactor) {
+    if (model != ""){
+        objModel = new ObjModel(model);
+    }
+    
+    Spawn(initialLocation);
+}
+
+void GameObject::Spawn(GameObjectParams* params) {
+    std::cout << "Spawning GameObject" << std::endl;
+    objects.push_back(params);
+}
+
+void GameObject::Draw(void) {
+    for (const auto &object : objects){
+        Draw(object->position, object->rotation);
+    }
+}
+
+void GameObject::Draw(Vec3f pos, Vec4f rot){
     glPushMatrix();
     
     float scale = 1.0f / scaleFactor;
+    glTranslatef(pos.x, pos.y, pos.z);
+    glRotatef(rot.w, rot.x, rot.y, rot.z);
     glScalef(scale, scale, scale);
-    glTranslatef(position.x, position.y, position.z);
-    glRotatef(rotation.w, rotation.x, rotation.y, rotation.z);
+    
     objModel->draw();
     
     glPopMatrix();
 }
+
+void GameObject::Update(float ticks) {
+    
+    auto predicate = [](const GameObjectParams *v) { return v->active == false; };
+    
+    size_t items = objects.size();
+    objects.erase(std::remove_if(objects.begin(), objects.end(), predicate), objects.end());
+    size_t removed = items - objects.size();
+    if (removed > 0 ) { std::cout << "Removed "<< removed <<" GameObjects" << std::endl;}
+};

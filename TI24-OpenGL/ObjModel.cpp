@@ -233,7 +233,11 @@ void ObjModel::draw()
     {
         // If: hasColor and NOT hasTexture
         if ((materials[(*group).materialIndex])->hasColor && !(materials[(*group).materialIndex])->hasTexture) {
-            glColor3f((materials[(*group).materialIndex])->color->getRed(), (materials[(*group).materialIndex])->color->getGreen(), (materials[(*group).materialIndex])->color->getBlue());
+            glColor3f(
+                      (materials[(*group).materialIndex])->color->getRed(),
+                      (materials[(*group).materialIndex])->color->getGreen(),
+                      (materials[(*group).materialIndex])->color->getBlue()
+                      );
         }
         // Else if: NOT hasColor and hasTexture
         else if ((materials[(*group).materialIndex])->hasTexture)
@@ -249,21 +253,17 @@ void ObjModel::draw()
         
         // Start drawing object:
         glBegin(GL_TRIANGLES);
-        for (Face f: group->faces){
-            for(std::list<Vertex>::iterator it = f.vertices.begin(); it != f.vertices.end(); ++it){
-                glNormal3f(normals[it->normal].x, normals[it->normal].y, normals[it->normal].z);
-                glTexCoord2f(texcoords[it->texcoord].x, texcoords[it->texcoord].y);
-                glVertex3f(vertices[it->position].x, vertices[it->position].y, vertices[it->position].z);
+        for (const Face &face: group->faces){
+            for (const Vertex &v : face.vertices){
+                glNormal3f(normals[v.normal].x, normals[v.normal].y, normals[v.normal].z);
+                glTexCoord2f(texcoords[v.texcoord].x, texcoords[v.texcoord].y);
+                glVertex3f(vertices[v.position].x, vertices[v.position].y, vertices[v.position].z);
             }
         }
         glEnd();
     }
-    //foreach group in groups
-    //  set material texture, if available
-    //  set material color, if available
-    //  foreach face in group
-    //    foreach vertex in face
-    //      emit vertex
+    
+    glDisable(GL_TEXTURE_2D);
 }
 
 void ObjModel::loadMaterialFile( const std::string &fileName, const std::string &dirName )
@@ -311,16 +311,13 @@ void ObjModel::loadMaterialFile( const std::string &fileName, const std::string 
     else if(params[0] == "map_kd")
     {
         currentMaterial->hasTexture = true;
-        currentMaterial->texture = texture_loader(params[1]);
+        std::string tex = trim(params[1]);
+        if (tex.find("/"))
+            tex = tex.substr(tex.rfind("/") + 1);
+        if (tex.find("\\"))
+            tex = tex.substr(tex.rfind("\\") + 1);
+        currentMaterial->texture = texture_loader(dirName + "/" + tex);
         currentMaterial->texture.initTexture();
-    //    std::string tex = params[1];
-    //    if (tex.find("/"))
-    //        tex = tex.substr(tex.rfind("/") + 1);
-    //        if (tex.find("\\"))
-    //            tex = tex.substr(tex.rfind("\\") + 1);
-    //            //currentMaterial->texture = new Texture(DIR + "/" + tex);
-    //            //TODO
-    //            currentMaterial->texture = new Texture(dirName + "/" + tex);
     }
     else if (params[0] == "kd"){
         currentMaterial->hasColor = true;

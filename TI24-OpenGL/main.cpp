@@ -22,6 +22,7 @@
 #include "Camera.hpp"
 #include "texture_loader.hpp"
 #include "ObjModel.hpp"
+#include "Vec.hpp"
 
 #define NO_ROTATION     0
 #define X_AXIS_ROTATION 1
@@ -30,6 +31,9 @@
 #define FOLLOW_CAM      4
 #define NO_TEXTURE      5
 #define DEFAULT_TEXTURE 6
+
+static float framesPerSecond    = 0.0f;       // This will store our fps
+static float lastTime   = 0.0f;       // This will hold the time from the last frame
 
 float rotation = 0.0f;
 int lastTick = 0;
@@ -48,12 +52,12 @@ void MouseButton(int, int, int, int);
 void MouseMotion(int, int);
 void glutSpecial(int, int, int);
 void glutSpecialUp(int, int, int);
-void Keyboard(unsigned char, int, int);
 void onDisplay();
 void rSleep(int);
 void IdleFunc(void);
-Camera camera;
-SpaceBlasters* game = new SpaceBlasters();
+Keyboard* keyboard = new Keyboard();
+Camera* camera = new Camera();
+SpaceBlasters* game = new SpaceBlasters(camera, keyboard);
 
 void gfxDrawCube(float posX, float posY, float posZ, float size, int angle, int texture){
     glPushMatrix();
@@ -69,7 +73,7 @@ void gfxDrawCube(float posX, float posY, float posZ, float size, int angle, int 
             glRotatef(rotation,0,0,1);
             break;
         case 4:
-            glRotatef(-camera.getEyeposHor(),0,1,0);
+            glRotatef(-camera->getEyeposHor(),0,1,0);
             break;
     }
     glTranslatef(-(size/2)-posX,-(size/2)-posY,-(size/2)-posZ);
@@ -186,6 +190,17 @@ void gfxDrawCube(float posX, float posY, float posZ, float size, int angle, int 
     glPopMatrix();
 }
 
+void fpsCounter(void){
+    float currentTime = glutGet(GLUT_ELAPSED_TIME) * 0.001f;
+    ++framesPerSecond;
+    if( currentTime - lastTime > 1.0f )
+    {
+        lastTime = currentTime;
+        if(1 == 1) fprintf(stderr, "\nCurrent Frames Per Second: %d\n\n", (int)framesPerSecond);
+        framesPerSecond = 0;
+    }
+}
+
 void Display(void)
 {
     glutSwapBuffers();
@@ -213,6 +228,7 @@ void MouseMotion(int x, int y)
 
 
 void onDisplay(){
+    fpsCounter();
     int const w = glutGet(GLUT_WINDOW_WIDTH);
     int const h = glutGet(GLUT_WINDOW_HEIGHT);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -220,33 +236,24 @@ void onDisplay(){
     glViewport(0, 0, (GLsizei) w, (GLsizei) h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(90.0, (GLfloat) w/(GLfloat) h, 1.0, 20.0);
+    gluPerspective(90.0, (GLfloat) w/(GLfloat) h, 1.0, 1000.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     gluLookAt(
               //Eye
-              camera.getCameraCenterX() + (camera.getEyeposVer()*cos(AsRadian(camera.getEyeposHor()))),
-              camera.getEyeposVer(),
-              camera.getCameraCenterZ() + (camera.getEyeposVer()*sin(AsRadian(camera.getEyeposHor()))),
+              camera->getPosition().x,
+              camera->getPosition().y,
+              camera->getPosition().z,
               //Center
-              camera.getCameraCenterX(),
-              camera.getCameraCenterY(),
-              camera.getCameraCenterZ(),
+              camera->getLookAt().x,
+              camera->getLookAt().y,
+              camera->getLookAt().z,
               //Up
               0,1,0
               );
 
     game->draw();
-    
-//    glLoadIdentity();
-//    glOrtho(0,glutGet(GLUT_WINDOW_WIDTH), 0, glutGet(GLUT_WINDOW_HEIGHT), -1, 200);
-//    glBegin(GL_LINE_LOOP);
-//    glVertex2f(5, 5);
-//    glVertex2f(glutGet(GLUT_WINDOW_WIDTH)-5, 5);
-//    glVertex2f(glutGet(GLUT_WINDOW_WIDTH)-5, glutGet(GLUT_WINDOW_HEIGHT)-5);
-//    glVertex2f(5, glutGet(GLUT_WINDOW_HEIGHT)-5);
-//    glEnd();
-//
+
     glutSwapBuffers();
 }
 
@@ -258,14 +265,28 @@ void IdleFunc(void)
 {
     int timeNow = glutGet(GLUT_ELAPSED_TIME);
     double ticks = (timeNow - lastTick);
-    rotation += ticks/10;
-    KeyboardIdle(ticks, camera);
     lastTick = timeNow;
+    rotation += ticks/10;
+    keyboard->KeyboardIdle(ticks);
+    
     
     game->update(ticks);
     
     Sleep(ticks/10);
     glutPostRedisplay();
+}
+
+void glutKeyboard(unsigned char key, int x, int y){
+    keyboard->glutKeyboard(key, x, y);
+}
+void glutKeyboardUp(unsigned char key, int x, int y){
+    keyboard->glutKeyboardUp(key, x, y);
+}
+void glutSpecialUp(int key, int x, int y){
+    keyboard->glutSpecialUp(key, x, y);
+}
+void glutSpecial(int key, int x, int y){
+    keyboard->glutSpecial(key, x, y);
 }
 
 int main(int argc, char * argv[])

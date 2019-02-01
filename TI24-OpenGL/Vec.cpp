@@ -56,6 +56,17 @@ Vec3f::Vec3f(const Vec3f &other)
     this->z = other.z;
 }
 
+float Vec3f::length(){
+    return sqrt((x*x)+(y*y)+(z*z));
+}
+
+void Vec3f::normalize(){
+    float length = this->length();
+    
+    if (length == 0){ return; } // avoid division by zero,
+    this->operator*=(1 / this->length());
+}
+
 float& Vec3f::operator [](int index)
 {
     return v[index];

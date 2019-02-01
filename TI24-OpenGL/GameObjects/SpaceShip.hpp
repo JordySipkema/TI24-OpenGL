@@ -12,13 +12,14 @@
 #include <stdio.h>
 #include "Vec.hpp"
 #include "GameObject.hpp"
+#include "SingularGameObject.hpp"
 
 
-class SpaceShip : public GameObject
+class SpaceShip : public SingularGameObject
 {
 public:
     SpaceShip(Vec3f position, Vec4f rotation, int scaleFactor);
-    void Update(double ticks);
+    void Update(float ticks);
 };
 
 #endif /* SpaceShip_hpp */

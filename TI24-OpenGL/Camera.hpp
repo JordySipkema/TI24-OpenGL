@@ -12,37 +12,41 @@
 #include <stdio.h>
 #include <GLUT/GLUT.h>
 #include <unistd.h>
-#include "glm/glm.hpp"
-#include "glm/vec3.hpp"
 
 #include <math.h>
 #include <future>
 #include <iostream>
 #include <map>
 #include <stack>
+
+#include "GameObjects/GameObject.hpp"
+#include "Vec.hpp"
 //#include "config.h"
 
 class Camera
 {
 private:
-    float eyeposVer = 10.2f; //In vertical plane: y          
+    Vec3f position = Vec3f();
+    Vec3f lookAt = Vec3f();
+    float eyeposVer = 0.2f; //In vertical plane: y          
     float eyeposHor = 0.0f; //In horizontal plane: x and z
-    float cameraCenterX = 0.0f;
-    float cameraCenterY = 0.0f;
-    float cameraCenterZ = 0.0f;
     
 public:
-    Camera(void);
+    Camera();
     float getEyeposHor(void);
     float getEyeposVer(void);
+    Vec3f getLookAt(void);
+    Vec3f getPosition(void);
     float getCameraCenterX(void);
     float getCameraCenterY(void);
     float getCameraCenterZ(void);
-    void setEyeposHor(float);
-    void setEyeposVer(float);
+    void setPosition(Vec3f);
+    void setLookAt(Vec3f);
     void setCameraCenterX(float);
     void setCameraCenterY(float);
     void setCameraCenterZ(float);
+    void setEyeposHor(float);
+    void setEyeposVer(float);
 };
 
 #endif /* Camera_hpp */

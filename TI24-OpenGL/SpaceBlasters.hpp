@@ -11,27 +11,50 @@
 
 #define GL_SILENCE_DEPRECATION // Silence the OpenGL/Glut deprecation warnings.
 
+
 #include <stdio.h>
 #include <vector>
 #include <GLUT/glut.h>
 #include "glm/glm.hpp"
+#include "Keyboard.hpp"
+#include "Camera.hpp"
+#include "AsteroidSpawner.hpp"
 #include "GameObjects/GameObject.hpp"
+#include "GameObjects/SingularGameObject.hpp"
+#include "GameObjects/Asteroid.hpp"
 
 class SpaceBlasters
 {
+private:
+    //Fields
+    AsteroidSpawner* spawner;
+    bool leftCannon = false;
+    bool followCam = true;
+    float angle = 0.0f;
+    
+    
+    //Methods
+    void updateCamera(void);
+    void handleKeyboard(double);
+    void spawnAsteroid(void);
+    void shootProjectile(void);
+    void collisionDetection(void);
+    
     
 public:
-    GameObject* spaceship;
-    //std::vector<GameObject*> gameObjects;
+    Keyboard* keyboard;
+    Camera* camera;
+    SingularGameObject* spaceship;
+    SingularGameObject* environment;
+    GameObject* asteroids;
+    GameObject* projectiles;
     
-    SpaceBlasters();
+    SpaceBlasters(Camera*, Keyboard*);
     
     void initGame(void);
     
     void draw(void);
-    void update(int ticks);
-    
-    void keyboard(unsigned char key, int x, int y);
+    void update(double ticks);
 };
 
 

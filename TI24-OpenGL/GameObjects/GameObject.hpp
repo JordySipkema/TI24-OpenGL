@@ -8,9 +8,6 @@
 #pragma once
 
 #include <stdio.h>
-#include "Vec.hpp"
-#include "../ObjModel.hpp"
-
 #include <GLUT/GLUT.h>
 #include <unistd.h>
 
@@ -19,6 +16,11 @@
 #include <iostream>
 #include <map>
 #include <stack>
+#include <vector>
+
+#include "Vec.hpp"
+#include "../ObjModel.hpp"
+#include "GameObjectParams.hpp"
 
 class GameObject
 {
@@ -26,13 +28,17 @@ class GameObject
     
 public:
     ObjModel* objModel;
-    Vec3f position; // x,y,z
-    Vec4f rotation; // x,y,z
+    std::vector<GameObjectParams*> objects;
+    
+    float collisionRadius;
     int scaleFactor;
     
-    GameObject(Vec3f position, Vec4f rotation, int scaleFactor, std::string model);
+    GameObject(int scaleFactor, std::string model);
+    GameObject(GameObjectParams* initialLocation, int scaleFactor, std::string model);
     
-    void Draw(void);
+    virtual void Draw(void);
+    virtual void Draw(Vec3f position, Vec4f rotation);
     
-    virtual void Update(double ticks) {};
+    virtual void Update(float ticks);
+    virtual void Spawn(GameObjectParams*);
 };

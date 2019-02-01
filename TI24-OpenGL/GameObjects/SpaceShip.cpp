@@ -10,10 +10,10 @@
 
 SpaceShip::SpaceShip(Vec3f position, Vec4f rotation, int scaleFactor = 1) :
 //GameObject(position, rotation, scaleFactor, "models/fightership/13897_Sci-Fi_Fighter_Ship_v1_l1.obj")
-    GameObject(position, rotation, scaleFactor, "spacecraft/spacecraft.obj")
+    SingularGameObject(position, rotation, scaleFactor, "spacecraft/spacecraft.obj")
 {
 }
 
-void SpaceShip::Update(double ticks){
-    rotation.w += ticks / 40;
+void SpaceShip::Update(float ticks){
+    //rotation.w += ticks / 40;
 }
