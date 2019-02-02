@@ -18,7 +18,7 @@
 class SpaceShip : public SingularGameObject
 {
 public:
-    SpaceShip(Vec3f position, Vec4f rotation, int scaleFactor);
+    SpaceShip(Vec3f position, Vec4f rotation, float scaleFactor);
     void Update(float ticks);
 };
 

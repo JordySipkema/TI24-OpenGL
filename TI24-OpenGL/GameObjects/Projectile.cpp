@@ -8,6 +8,7 @@
 #define GL_SILENCE_DEPRECATION // Silence the OpenGL/Glut deprecation warnings.
 #define AsRadian(x) ((x)*(M_PI/180.0f))
 #define _USE_MATH_DEFINES
+#define PROJECTILE_SPEED 40.0f
 
 #include "Projectile.hpp"
 
@@ -39,7 +40,7 @@ void Projectile::Update(float ticks){
     
     for (const auto &object : objects){
         Vec3f temp = object->movement;
-        temp *= ticks / 1000;
+        temp *= ticks / 1000 * PROJECTILE_SPEED;
         object->distanceTravelled += temp.length();
         object->position += temp;
         
@@ -48,3 +49,5 @@ void Projectile::Update(float ticks){
         }
     }
 }
+
+#undef PROJECTILE_SPEED

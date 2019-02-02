@@ -63,7 +63,7 @@ float Vec3f::length(){
 void Vec3f::normalize(){
     float length = this->length();
     
-    if (length == 0){ return; } // avoid division by zero,
+    if (length == 0){ return; } // avoid division by zero.
     this->operator*=(1 / this->length());
 }
 

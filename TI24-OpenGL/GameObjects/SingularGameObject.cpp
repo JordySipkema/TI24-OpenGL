@@ -9,7 +9,7 @@
 #include "SingularGameObject.hpp"
 #include "Enumerator.hpp"
 
-SingularGameObject::SingularGameObject(Vec3f position, Vec4f rotation, int scaleFactor, std::string model) : GameObject(scaleFactor, model)
+SingularGameObject::SingularGameObject(Vec3f position, Vec4f rotation, float scaleFactor, std::string model) : GameObject(scaleFactor, model)
 {
     GameObjectParams* params = new GameObjectParams(position, rotation);
     Spawn(params);

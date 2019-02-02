@@ -18,7 +18,7 @@
 class EnvironmentSphere : public SingularGameObject
 {
 public:
-    EnvironmentSphere(Vec3f position, Vec4f rotation, int scaleFactor);
+    EnvironmentSphere(Vec3f position, Vec4f rotation, float scaleFactor);
     void Update(float ticks);
     void Draw(void);
 };

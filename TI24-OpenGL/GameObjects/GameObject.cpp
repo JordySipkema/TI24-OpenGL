@@ -9,13 +9,13 @@
 #include "GameObject.hpp"
 #include "Enumerator.hpp"
 
-GameObject::GameObject(int scaleFactor, std::string model) : scaleFactor(scaleFactor) {
+GameObject::GameObject(float scaleFactor, std::string model) : scaleFactor(scaleFactor) {
     if (model != ""){
         objModel = new ObjModel(model);
     }
 }
 
-GameObject::GameObject(GameObjectParams* initialLocation, int scaleFactor, std::string model) : scaleFactor(scaleFactor) {
+GameObject::GameObject(GameObjectParams* initialLocation, float scaleFactor, std::string model) : scaleFactor(scaleFactor) {
     if (model != ""){
         objModel = new ObjModel(model);
     }
@@ -56,3 +56,7 @@ void GameObject::Update(float ticks) {
     size_t removed = items - objects.size();
     if (removed > 0 ) { std::cout << "Removed "<< removed <<" GameObjects" << std::endl;}
 };
+
+void GameObject::Destroy(void){
+    objects.clear();
+}

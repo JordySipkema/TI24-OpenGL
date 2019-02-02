@@ -30,7 +30,7 @@ class SingularGameObject : public GameObject
     
 public:
     
-    SingularGameObject(Vec3f position, Vec4f rotation, int scaleFactor, std::string model);
+    SingularGameObject(Vec3f position, Vec4f rotation, float scaleFactor, std::string model);
     
     virtual void Update(float ticks);
     virtual void Spawn(GameObjectParams*);

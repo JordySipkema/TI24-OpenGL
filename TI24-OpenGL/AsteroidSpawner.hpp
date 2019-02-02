@@ -20,6 +20,7 @@
 class AsteroidSpawner
 {
 private:
+    bool isStarted = false;
     GameObject* gameObject;
     float spawnDistance = SpawnDistance;
     float internalTicks = 0.0f;
@@ -31,7 +32,9 @@ public:
     bool ShouldSpawn(float);
     void Spawn(void);
     void SpawnIfNecessary(float);
-    
+    void Reset();
+    void Start();
+    void ResetAndStart();
 };
 
 #endif /* AsteroidSpawner_hpp */

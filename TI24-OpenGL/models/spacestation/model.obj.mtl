@@ -1,0 +1,13 @@
+# File produced by Open Asset Import Library (http://www.assimp.sf.net)
+# (assimp v3.1.187496374)
+
+newmtl T_Modul
+Kd 0.184465 0.172497 0.0350208
+Ka 0.1 0.1 0.1
+Ks 0.4 0.4 0.4
+Ke 0 0 0
+d 1
+Ns 10
+map_Kd T_Modul_albedo.jpeg
+map_Ka T_Modul_albedo.jpeg
+illum 2

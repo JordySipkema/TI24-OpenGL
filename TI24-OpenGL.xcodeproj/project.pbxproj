@@ -18,6 +18,7 @@
 		6802F12321C84B0F001CF6FC /* PRIM1L3.png in Copy Files */ = {isa = PBXBuildFile; fileRef = 6802F10F21C844DA001CF6FC /* PRIM1L3.png */; };
 		6802F12421C84B0F001CF6FC /* PRIM1P.png in Copy Files */ = {isa = PBXBuildFile; fileRef = 6802F11021C844DA001CF6FC /* PRIM1P.png */; };
 		6802F12521C84B0F001CF6FC /* PRIM1ST.png in Copy Files */ = {isa = PBXBuildFile; fileRef = 6802F11121C844DA001CF6FC /* PRIM1ST.png */; };
+		680B1C6022059CF000094579 /* SpaceStation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 680B1C5E22059CF000094579 /* SpaceStation.cpp */; };
 		68135D9922018CD80037BBD3 /* SingularGameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68135D9722018CD80037BBD3 /* SingularGameObject.cpp */; };
 		68135D9C2201A63F0037BBD3 /* Projectile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68135D9A2201A63F0037BBD3 /* Projectile.cpp */; };
 		68429F152202F79100D628E9 /* Matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68429F132202F79100D628E9 /* Matrix.cpp */; };
@@ -72,6 +73,15 @@
 		6802F11021C844DA001CF6FC /* PRIM1P.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PRIM1P.png; sourceTree = "<group>"; };
 		6802F11121C844DA001CF6FC /* PRIM1ST.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PRIM1ST.png; sourceTree = "<group>"; };
 		6802F11321C844EA001CF6FC /* terrain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terrain.png; sourceTree = "<group>"; };
+		680B1C5E22059CF000094579 /* SpaceStation.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SpaceStation.cpp; sourceTree = "<group>"; };
+		680B1C5F22059CF000094579 /* SpaceStation.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SpaceStation.hpp; sourceTree = "<group>"; };
+		680B1C712205B7FF00094579 /* T_Modul_metallic.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = T_Modul_metallic.jpeg; sourceTree = "<group>"; };
+		680B1C722205B7FF00094579 /* model.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = model.obj; sourceTree = "<group>"; };
+		680B1C732205B7FF00094579 /* T_Modul_albedo.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = T_Modul_albedo.jpeg; sourceTree = "<group>"; };
+		680B1C742205B7FF00094579 /* T_Modul_roughness.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = T_Modul_roughness.jpeg; sourceTree = "<group>"; };
+		680B1C752205B7FF00094579 /* T_Modul_normal.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = T_Modul_normal.jpeg; sourceTree = "<group>"; };
+		680B1C762205B7FF00094579 /* model.obj.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = model.obj.mtl; sourceTree = "<group>"; };
+		680B1C772205B7FF00094579 /* T_Modul_AO.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = T_Modul_AO.jpeg; sourceTree = "<group>"; };
 		68135D95220189B90037BBD3 /* Enumerator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Enumerator.hpp; sourceTree = "<group>"; };
 		68135D9722018CD80037BBD3 /* SingularGameObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SingularGameObject.cpp; sourceTree = "<group>"; };
 		68135D9822018CD80037BBD3 /* SingularGameObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SingularGameObject.hpp; sourceTree = "<group>"; };
@@ -110,6 +120,8 @@
 		6896E9A821FF466F00E69ACF /* Asteroid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Asteroid.hpp; sourceTree = "<group>"; };
 		6896E9AB2200E9C600E69ACF /* GameObjectParams.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GameObjectParams.cpp; sourceTree = "<group>"; };
 		6896E9AC2200E9C600E69ACF /* GameObjectParams.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameObjectParams.hpp; sourceTree = "<group>"; };
+		68A9226C2205BCAE00083575 /* model_low.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = model_low.obj; sourceTree = "<group>"; };
+		68A9226D2205BCAE00083575 /* model_low.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = model_low.mtl; sourceTree = "<group>"; };
 		68E0F28E21FF131C00F7C45C /* EnvironmentSphere.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EnvironmentSphere.cpp; sourceTree = "<group>"; };
 		68E0F28F21FF131C00F7C45C /* EnvironmentSphere.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EnvironmentSphere.hpp; sourceTree = "<group>"; };
 		68E28F6B20D7D3D4008D533B /* SpaceBlasters.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SpaceBlasters.cpp; sourceTree = "<group>"; };
@@ -146,12 +158,14 @@
 			children = (
 				6802CA4C21F105F000922845 /* GameObject.hpp */,
 				6802CA4721F1033900922845 /* GameObject.cpp */,
-				68135D9722018CD80037BBD3 /* SingularGameObject.cpp */,
-				68135D9822018CD80037BBD3 /* SingularGameObject.hpp */,
+				680B1C5E22059CF000094579 /* SpaceStation.cpp */,
+				680B1C5F22059CF000094579 /* SpaceStation.hpp */,
 				68E28F6E20D7D4CF008D533B /* SpaceShip.cpp */,
 				68E28F6F20D7D4CF008D533B /* SpaceShip.hpp */,
 				68E0F28E21FF131C00F7C45C /* EnvironmentSphere.cpp */,
 				68E0F28F21FF131C00F7C45C /* EnvironmentSphere.hpp */,
+				68135D9722018CD80037BBD3 /* SingularGameObject.cpp */,
+				68135D9822018CD80037BBD3 /* SingularGameObject.hpp */,
 				6896E9A721FF466F00E69ACF /* Asteroid.cpp */,
 				6896E9A821FF466F00E69ACF /* Asteroid.hpp */,
 				68135D9A2201A63F0037BBD3 /* Projectile.cpp */,
@@ -191,6 +205,7 @@
 		6802F0FF21C84403001CF6FC /* models */ = {
 			isa = PBXGroup;
 			children = (
+				680B1C702205B7FF00094579 /* spacestation */,
 				6896E9A321FF465E00E69ACF /* asteroid */,
 				68614DB321F653830085FAC5 /* fightership */,
 				6802F10A21C844DA001CF6FC /* bloemetje */,
@@ -210,6 +225,22 @@
 				6802F11121C844DA001CF6FC /* PRIM1ST.png */,
 			);
 			path = bloemetje;
+			sourceTree = "<group>";
+		};
+		680B1C702205B7FF00094579 /* spacestation */ = {
+			isa = PBXGroup;
+			children = (
+				68A9226D2205BCAE00083575 /* model_low.mtl */,
+				68A9226C2205BCAE00083575 /* model_low.obj */,
+				680B1C712205B7FF00094579 /* T_Modul_metallic.jpeg */,
+				680B1C722205B7FF00094579 /* model.obj */,
+				680B1C732205B7FF00094579 /* T_Modul_albedo.jpeg */,
+				680B1C742205B7FF00094579 /* T_Modul_roughness.jpeg */,
+				680B1C752205B7FF00094579 /* T_Modul_normal.jpeg */,
+				680B1C762205B7FF00094579 /* model.obj.mtl */,
+				680B1C772205B7FF00094579 /* T_Modul_AO.jpeg */,
+			);
+			path = spacestation;
 			sourceTree = "<group>";
 		};
 		68614DB321F653830085FAC5 /* fightership */ = {
@@ -350,6 +381,7 @@
 				68E28F6D20D7D3D4008D533B /* SpaceBlasters.cpp in Sources */,
 				68659EC720907B4B00117AD4 /* main.cpp in Sources */,
 				68429F152202F79100D628E9 /* Matrix.cpp in Sources */,
+				680B1C6022059CF000094579 /* SpaceStation.cpp in Sources */,
 				68135D9922018CD80037BBD3 /* SingularGameObject.cpp in Sources */,
 				6896E9A921FF466F00E69ACF /* Asteroid.cpp in Sources */,
 				684A0C7C20D869E800C6BDC4 /* ObjModel.cpp in Sources */,

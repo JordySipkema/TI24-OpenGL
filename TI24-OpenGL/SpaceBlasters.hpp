@@ -10,7 +10,10 @@
 #define SpaceBlasters_hpp
 
 #define GL_SILENCE_DEPRECATION // Silence the OpenGL/Glut deprecation warnings.
-
+#define sb_HEALTH            100
+#define sb_ASTEROID_DAMAGE     5
+#define sb_SHIP_DAMAGE        10
+#define sb_PROJECTILE_DAMAGE  10
 
 #include <stdio.h>
 #include <vector>
@@ -21,7 +24,6 @@
 #include "AsteroidSpawner.hpp"
 #include "GameObjects/GameObject.hpp"
 #include "GameObjects/SingularGameObject.hpp"
-#include "GameObjects/Asteroid.hpp"
 
 class SpaceBlasters
 {
@@ -31,6 +33,7 @@ private:
     bool leftCannon = false;
     bool followCam = true;
     float angle = 0.0f;
+    int health = sb_HEALTH;
     
     
     //Methods
@@ -39,11 +42,13 @@ private:
     void spawnAsteroid(void);
     void shootProjectile(void);
     void collisionDetection(void);
+    void restart(void);
     
     
 public:
     Keyboard* keyboard;
     Camera* camera;
+    SingularGameObject* spacestation;
     SingularGameObject* spaceship;
     SingularGameObject* environment;
     GameObject* asteroids;
@@ -56,6 +61,5 @@ public:
     void draw(void);
     void update(double ticks);
 };
-
 
 #endif /* SpaceBlasters_hpp */

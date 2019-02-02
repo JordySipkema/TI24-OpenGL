@@ -19,7 +19,24 @@ AsteroidSpawner::AsteroidSpawner(GameObject* object, float distance){
     this->speed = distance / TimeToOrigin;
 }
 
+void AsteroidSpawner::Start(void){
+    isStarted = true;
+}
+
+void AsteroidSpawner::Reset(void){
+    isStarted = false;
+    internalTicks = 0.0f;
+}
+
+void AsteroidSpawner::ResetAndStart(void){
+    Reset(); Start();
+}
+
 bool AsteroidSpawner::ShouldSpawn(float ticks){
+    // We cant spawn if we are not enabled
+    if (!isStarted) { return false; }
+    
+    
     internalTicks += ticks;
     if (internalTicks >= (1000 * SpawnInterval)){
         return true;
@@ -28,6 +45,7 @@ bool AsteroidSpawner::ShouldSpawn(float ticks){
 }
 
 void AsteroidSpawner::Spawn(void) {
+    // If you are calling this while not started; I dont care...
     // We are spawning right now; so reset the ticks:
     internalTicks = 0.0f;
     

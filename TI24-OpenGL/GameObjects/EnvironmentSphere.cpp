@@ -10,7 +10,7 @@
 #include "EnvironmentSphere.hpp"
 #include <GLUT/GLUT.h>
 
-EnvironmentSphere::EnvironmentSphere(Vec3f position, Vec4f rotation, int scaleFactor = 1)
+EnvironmentSphere::EnvironmentSphere(Vec3f position, Vec4f rotation, float scaleFactor = 1)
   : SingularGameObject(position, rotation, scaleFactor, "")
 {
 }
@@ -21,6 +21,7 @@ void EnvironmentSphere::Draw(void){
     glPushMatrix();
     
     glColor3f(0.0f, 0.4f, 0.0f);
+    glTranslatef(getParams()->position.x, getParams()->position.y, getParams()->position.z);
     
     GLUquadric* quadric = gluNewQuadric();
     gluQuadricOrientation(quadric, GLU_INSIDE);

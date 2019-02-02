@@ -31,14 +31,15 @@ public:
     std::vector<GameObjectParams*> objects;
     
     float collisionRadius;
-    int scaleFactor;
+    float scaleFactor;
     
-    GameObject(int scaleFactor, std::string model);
-    GameObject(GameObjectParams* initialLocation, int scaleFactor, std::string model);
+    GameObject(float scaleFactor, std::string model);
+    GameObject(GameObjectParams* initialLocation, float scaleFactor, std::string model);
     
     virtual void Draw(void);
     virtual void Draw(Vec3f position, Vec4f rotation);
     
     virtual void Update(float ticks);
     virtual void Spawn(GameObjectParams*);
+    virtual void Destroy(void);
 };
