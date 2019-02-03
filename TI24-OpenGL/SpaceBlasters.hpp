@@ -11,9 +11,9 @@
 
 #define GL_SILENCE_DEPRECATION // Silence the OpenGL/Glut deprecation warnings.
 #define sb_HEALTH            100
-#define sb_ASTEROID_DAMAGE     5
-#define sb_SHIP_DAMAGE        10
-#define sb_PROJECTILE_DAMAGE  10
+#define sb_ASTEROID_DAMAGE    10
+#define sb_SHIP_DAMAGE        25
+#define sb_PROJECTILE_DAMAGE  15
 
 #define sb_GAMESTATE_NOGAME   0
 #define sb_GAMESTATE_PLAYING  1

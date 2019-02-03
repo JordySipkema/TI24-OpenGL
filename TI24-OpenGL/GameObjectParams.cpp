@@ -22,6 +22,7 @@ GameObjectParams::GameObjectParams(const GameObjectParams &other){
     this->movement = other.movement;
     this->position = other.position;
     this->rotation = other.rotation;
+    this->effect = other.effect;
     this->rotationAngle = other.rotationAngle;
     this->distanceTravelled = other.distanceTravelled;
     this->active = other.active;

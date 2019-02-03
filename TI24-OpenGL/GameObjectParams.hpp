@@ -21,6 +21,7 @@ public:
     Vec3f movement; // Vector describing direction of movement
     Vec3f position; // Vector describing position of the GameObject
     Vec4f rotation; // 4D-Vector describing rotation-vector (x,y,z) and w (rotation around that vector)
+    Vec4f effect;   // 4D-Vector describing a visual effect.
 
     float rotationAngle = 0.0f;
     float distanceTravelled = 0.0f;

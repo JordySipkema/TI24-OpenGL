@@ -18,7 +18,7 @@ Projectile::Projectile() : GameObject(4, "")
     collisionRadius = 0.5f;
 }
 
-void Projectile::Draw(Vec3f position, Vec4f rotation){
+void Projectile::Draw(Vec3f position, Vec4f rotation, Vec4f effect){
     glPushMatrix();
     
     float height = 1.25f;

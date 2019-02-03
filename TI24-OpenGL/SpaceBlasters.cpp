@@ -8,8 +8,11 @@
 #define AsRadian(x) ((x)*(M_PI/180.0f))
 #define _USE_MATH_DEFINES
 
-#define spaceship_initial_position Vec3f(0,0,-15)
-#define spaceship_initial_rotation Vec4f(0,1,0,0)
+#define default_camera_position Vec3f(0,0,-15)
+#define default_camera_rotation Vec4f(0,1,0,0)
+#define spaceship_initial_position Vec3f(0,0,-20)
+#define spaceship_initial_rotation Vec4f(0,1,0,50)
+#define spaceship_tilt_max_angle 25.0f
 
 #include <cmath>
 #include <cstdlib>
@@ -55,6 +58,7 @@ void SpaceBlasters::restart(void){
     // Reset phase: reset everything for a new game
     spawner->Reset();
     GameObjectParams* params = new GameObjectParams(spaceship_initial_position, spaceship_initial_rotation);
+    params->effect = Vec4f(0, 0, 1, 0);
     spaceship->Spawn(params);
     spawner->Start();
 }
@@ -97,27 +101,57 @@ void SpaceBlasters::update(double ticks)
     }
 }
 
+void updateBanking(double ticks,float desiredAngle, GameObjectParams* params){
+    // Rotate to maximum in 1 second:
+    float currentEffect = params->effect.w;
+    float calc = (ticks / 100) * spaceship_tilt_max_angle;
+    
+    if (desiredAngle < 0) {
+        currentEffect -= calc;
+        currentEffect = std::max(-spaceship_tilt_max_angle, currentEffect);
+    } else if (desiredAngle > 0){
+        currentEffect += calc;
+        currentEffect = std::min(spaceship_tilt_max_angle, currentEffect);
+    } else {
+        if (currentEffect < 0){
+            currentEffect += calc;
+            currentEffect = std::min(0.0f, currentEffect);
+        } else if (currentEffect > 0){
+            currentEffect -= calc;
+            currentEffect = std::max(0.0f, currentEffect);
+        }
+    }
+    
+    params->effect.w = currentEffect;
+}
+
 void SpaceBlasters::handleKeyboard(double ticks){
     if (gamestate == sb_GAMESTATE_PLAYING){
+        float desiredAngle = 0;
         if (keyboard->keys[int('a')]){ // key: a
             spaceship->getParams()->rotation.w += (ticks / 20.0f);
+            desiredAngle -= spaceship_tilt_max_angle;
         }
         if (keyboard->keys[int('d')]){ // key: d
             spaceship->getParams()->rotation.w -= (ticks / 20.0f);
+            desiredAngle += spaceship_tilt_max_angle;
         }
+        updateBanking(ticks, desiredAngle, spaceship->getParams());
         
         if (keyboard->keys[int('w')]){ // key: w
-            spaceship->getParams()->movement.z = 1;
-        } else {
+            spaceship->getParams()->movement.z = 1.5f;
+        } else if (keyboard->keys[int('s')]) {
             spaceship->getParams()->movement.z = 0;
+        } else {
+            spaceship->getParams()->movement.z = 1;
         }
         
-        if (keyboard->keys[int('q')]){ // key: q
-            angle += (ticks / 20.0f);
-        }
-        if (keyboard->keys[int('e')]){ // key: e
-            angle -= (ticks / 20.0f);
-        }
+//        if (keyboard->keys[int('q')]){ // key: q
+//            spaceship->getParams()->rotation.w -= (ticks / 20.0f);
+//        }
+//        if (keyboard->keys[int('e')]){ // key: e
+//            spaceship->getParams()->rotation.w += (ticks / 20.0f);
+//        }
         if (keyboard->keys[32]){ // spacebar
             keyboard->keys[32] = false; // Disable key
             shootProjectile();
@@ -162,15 +196,15 @@ void SpaceBlasters::updateCamera(){
             pos.y += 0.0f;
             camera->setPosition(pos);
         }
-    } else {
-        Vec3f pos = spaceship_initial_position;
+    } else { // NOT PLAYING
+        Vec3f pos = default_camera_position;
         float radius = 10.0f;
-        pos.x += (sin(AsRadian(spaceship_initial_rotation.w + 180)) * radius);
+        pos.x += (sin(AsRadian(default_camera_rotation.w + 180)) * radius);
         pos.y += 3.0f;
-        pos.z += (cos(AsRadian(spaceship_initial_rotation.w + 180)) * radius);
+        pos.z += (cos(AsRadian(default_camera_rotation.w + 180)) * radius);
         camera->setPosition(pos);
         
-        Vec3f lookAt = spaceship_initial_position;
+        Vec3f lookAt = default_camera_position;
         lookAt.y += 2.0f;
         camera->setLookAt(lookAt);
     }
@@ -193,6 +227,7 @@ void SpaceBlasters::shootProjectile(void){
     leftCannon = !leftCannon;
     
     // Now we can rotate the position based on spaceship rotation
+    params->position = Matrix::Rotate(params->position, spaceship->getParams()->effect);
     params->position = Matrix::Rotate(params->position, spaceship->getParams()->rotation);
     // And finally: Translate the vector to the currect position of the spacecraft.
     params->position += spaceship->getParams()->position;
@@ -211,6 +246,15 @@ void SpaceBlasters::collisionDetection(void){
             asteroid->active = false;
             health -= sb_ASTEROID_DAMAGE;
             std::cout << "BIEM: SpaceStation has been hit" << std::endl;
+            std::cout << "HEALTH INFO: " << health << "hp left" << std::endl;
+        }
+        
+        // Check collission with spaceship:
+        distanceVect = asteroid->position - spacestation->getParams()->position;
+        if (abs(distanceVect.length()) <= asteroids->collisionRadius + spacestation->collisionRadius){
+            asteroid->active = false;
+            health -= sb_SHIP_DAMAGE;
+            std::cout << "WARNING: Your ship will be damaged if you do this!" << std::endl;
             std::cout << "HEALTH INFO: " << health << "hp left" << std::endl;
         }
         

@@ -30,16 +30,17 @@ void GameObject::Spawn(GameObjectParams* params) {
 
 void GameObject::Draw(void) {
     for (const auto &object : objects){
-        Draw(object->position, object->rotation);
+        Draw(object->position, object->rotation, object->effect);
     }
 }
 
-void GameObject::Draw(Vec3f pos, Vec4f rot){
+void GameObject::Draw(Vec3f pos, Vec4f rot, Vec4f eff){
     glPushMatrix();
     
     float scale = 1.0f / scaleFactor;
     glTranslatef(pos.x, pos.y, pos.z);
     glRotatef(rot.w, rot.x, rot.y, rot.z);
+    glRotatef(eff.w, eff.x, eff.y, eff.z);
     glScalef(scale, scale, scale);
     
     objModel->draw();

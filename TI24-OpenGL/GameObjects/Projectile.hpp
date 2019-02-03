@@ -23,7 +23,7 @@ private:
 public:
     Projectile();
     void Update(float);
-    void Draw(Vec3f, Vec4f);
+    void Draw(Vec3f, Vec4f, Vec4f);
 };
 
 #endif /* Projectile_hpp */

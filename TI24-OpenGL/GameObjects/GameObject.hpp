@@ -37,7 +37,7 @@ public:
     GameObject(GameObjectParams* initialLocation, float scaleFactor, std::string model);
     
     virtual void Draw(void);
-    virtual void Draw(Vec3f position, Vec4f rotation);
+    virtual void Draw(Vec3f position, Vec4f rotation, Vec4f effect);
     
     virtual void Update(float ticks);
     virtual void Spawn(GameObjectParams*);
