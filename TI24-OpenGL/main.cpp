@@ -23,6 +23,7 @@
 #include "texture_loader.hpp"
 #include "ObjModel.hpp"
 #include "Vec.hpp"
+#include "Texthelper.hpp"
 
 #define NO_ROTATION     0
 #define X_AXIS_ROTATION 1
@@ -253,6 +254,23 @@ void onDisplay(){
               );
 
     game->draw();
+    
+    // Draw the HUD
+    // possible: disable/enable depthtesting
+    glMatrixMode(GL_PROJECTION);
+    glPushMatrix();
+    glLoadIdentity();
+    gluOrtho2D(0, 1.0f, 1.0f, 0);
+    
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glLoadIdentity();
+    game->drawHud();
+    
+    glMatrixMode(GL_PROJECTION);
+    glPopMatrix();
+    glMatrixMode(GL_MODELVIEW);
+    glPopMatrix();
 
     glutSwapBuffers();
 }

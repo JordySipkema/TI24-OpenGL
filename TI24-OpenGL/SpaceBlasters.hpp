@@ -15,6 +15,11 @@
 #define sb_SHIP_DAMAGE        10
 #define sb_PROJECTILE_DAMAGE  10
 
+#define sb_GAMESTATE_NOGAME   0
+#define sb_GAMESTATE_PLAYING  1
+#define sb_GAMESTATE_PAUSED   2
+#define sb_GAMESTATE_GAMEOVER 3
+
 #include <stdio.h>
 #include <vector>
 #include <GLUT/glut.h>
@@ -24,6 +29,7 @@
 #include "AsteroidSpawner.hpp"
 #include "GameObjects/GameObject.hpp"
 #include "GameObjects/SingularGameObject.hpp"
+#include "Texthelper.hpp"
 
 class SpaceBlasters
 {
@@ -34,6 +40,7 @@ private:
     bool followCam = true;
     float angle = 0.0f;
     int health = sb_HEALTH;
+    unsigned short gamestate = sb_GAMESTATE_NOGAME;
     
     
     //Methods
@@ -43,6 +50,7 @@ private:
     void shootProjectile(void);
     void collisionDetection(void);
     void restart(void);
+    void stopGame(void);
     
     
 public:
@@ -59,6 +67,7 @@ public:
     void initGame(void);
     
     void draw(void);
+    void drawHud(void);
     void update(double ticks);
 };
 

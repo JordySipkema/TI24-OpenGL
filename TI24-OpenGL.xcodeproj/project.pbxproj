@@ -32,6 +32,8 @@
 		68659ED22090812200117AD4 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68659ED0209080D500117AD4 /* OpenGL.framework */; };
 		6896E9A921FF466F00E69ACF /* Asteroid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6896E9A721FF466F00E69ACF /* Asteroid.cpp */; };
 		6896E9AD2200E9C600E69ACF /* GameObjectParams.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6896E9AB2200E9C600E69ACF /* GameObjectParams.cpp */; };
+		68A92273220748B600083575 /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 68A92271220747A300083575 /* libfreetype.6.dylib */; };
+		68A922752207551F00083575 /* libftgl.2.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 68A922742207551F00083575 /* libftgl.2.1.3.dylib */; };
 		68E0F29021FF131C00F7C45C /* EnvironmentSphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68E0F28E21FF131C00F7C45C /* EnvironmentSphere.cpp */; };
 		68E28F6D20D7D3D4008D533B /* SpaceBlasters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68E28F6B20D7D3D4008D533B /* SpaceBlasters.cpp */; };
 		68E28F7020D7D4CF008D533B /* SpaceShip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68E28F6E20D7D4CF008D533B /* SpaceShip.cpp */; };
@@ -122,6 +124,9 @@
 		6896E9AC2200E9C600E69ACF /* GameObjectParams.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameObjectParams.hpp; sourceTree = "<group>"; };
 		68A9226C2205BCAE00083575 /* model_low.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = model_low.obj; sourceTree = "<group>"; };
 		68A9226D2205BCAE00083575 /* model_low.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = model_low.mtl; sourceTree = "<group>"; };
+		68A9226F2205F76500083575 /* Texthelper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Texthelper.hpp; sourceTree = "<group>"; };
+		68A92271220747A300083575 /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../../../../usr/local/Cellar/freetype/2.9.1/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
+		68A922742207551F00083575 /* libftgl.2.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libftgl.2.1.3.dylib; path = "../../../../usr/local/Cellar/ftgl/2.1.3-rc5/lib/libftgl.2.1.3.dylib"; sourceTree = "<group>"; };
 		68E0F28E21FF131C00F7C45C /* EnvironmentSphere.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EnvironmentSphere.cpp; sourceTree = "<group>"; };
 		68E0F28F21FF131C00F7C45C /* EnvironmentSphere.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EnvironmentSphere.hpp; sourceTree = "<group>"; };
 		68E28F6B20D7D3D4008D533B /* SpaceBlasters.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SpaceBlasters.cpp; sourceTree = "<group>"; };
@@ -135,6 +140,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68A922752207551F00083575 /* libftgl.2.1.3.dylib in Frameworks */,
+				68A92273220748B600083575 /* libfreetype.6.dylib in Frameworks */,
 				684A0C7720D7F09700C6BDC4 /* glm in Frameworks */,
 				68659ED22090812200117AD4 /* OpenGL.framework in Frameworks */,
 				68659ECF20907EE200117AD4 /* GLUT.framework in Frameworks */,
@@ -198,6 +205,7 @@
 				68429F142202F79100D628E9 /* Matrix.hpp */,
 				68429F162203332F00D628E9 /* AsteroidSpawner.cpp */,
 				68429F172203332F00D628E9 /* AsteroidSpawner.hpp */,
+				68A9226F2205F76500083575 /* Texthelper.hpp */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -296,6 +304,8 @@
 		68659ECD20907EE200117AD4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				68A922742207551F00083575 /* libftgl.2.1.3.dylib */,
+				68A92271220747A300083575 /* libfreetype.6.dylib */,
 				684A0B6420D7EF8500C6BDC4 /* glm */,
 				68659ED0209080D500117AD4 /* OpenGL.framework */,
 				68659ECE20907EE200117AD4 /* GLUT.framework */,
@@ -509,7 +519,16 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = /usr/local/Cellar/glm/0.9.9.0/include/glm;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/Cellar/glm/0.9.9.0/include/glm,
+					/usr/local/Cellar/freetype/2.9.1/include/freetype2,
+					"/usr/local/Cellar/ftgl/2.1.3-rc5/include",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/freetype/2.9.1/lib,
+					"/usr/local/Cellar/ftgl/2.1.3-rc5/lib",
+				);
 				OTHER_LDFLAGS = "-v";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -521,7 +540,16 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = /usr/local/Cellar/glm/0.9.9.0/include/glm;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/Cellar/glm/0.9.9.0/include/glm,
+					/usr/local/Cellar/freetype/2.9.1/include/freetype2,
+					"/usr/local/Cellar/ftgl/2.1.3-rc5/include",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/freetype/2.9.1/lib,
+					"/usr/local/Cellar/ftgl/2.1.3-rc5/lib",
+				);
 				OTHER_LDFLAGS = "-v";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

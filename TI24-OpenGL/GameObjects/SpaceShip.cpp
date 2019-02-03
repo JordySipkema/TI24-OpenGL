@@ -17,6 +17,9 @@ SpaceShip::SpaceShip(Vec3f position, Vec4f rotation, float scaleFactor = 1) :
 }
 
 void SpaceShip::Update(float ticks){
+    // Bail out;
+    if (getParams() == nullptr) { return; }
+    
     Vec3f movement = getParams()->movement;
     movement *= (ticks / 1000) * SHIP_SPEED;
     movement = Matrix::Rotate(movement, getParams()->rotation);

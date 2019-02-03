@@ -13,6 +13,7 @@
 
 #include <cmath>
 #include <cstdlib>
+#include <sstream>
 #include "SpaceBlasters.hpp"
 #include "Matrix.hpp"
 #include "GameObjects/SpaceStation.hpp"
@@ -20,6 +21,7 @@
 #include "GameObjects/EnvironmentSphere.hpp"
 #include "GameObjects/Asteroid.hpp"
 #include "GameObjects/Projectile.hpp"
+
 
 
 SpaceBlasters::SpaceBlasters(Camera* camera, Keyboard* keyboard) : camera(camera), keyboard(keyboard) { }
@@ -33,16 +35,22 @@ void SpaceBlasters::initGame(void) {
     spawner      = new AsteroidSpawner(asteroids);
     
     updateCamera();
-    spawner->Start();
+    spaceship->Destroy();
+    //spawner->Start();
+}
+
+void SpaceBlasters::stopGame(void){
+    spaceship->Destroy();
+    asteroids->Destroy();
+    projectiles->Destroy();
+    spawner->Reset();
 }
 
 void SpaceBlasters::restart(void){
     health = sb_HEALTH;
     
     // Destroy phase: remove everything
-    spaceship->Destroy();
-    asteroids->Destroy();
-    projectiles->Destroy();
+    stopGame();
     
     // Reset phase: reset everything for a new game
     spawner->Reset();
@@ -55,7 +63,12 @@ void SpaceBlasters::draw(void)
 {
     updateCamera();
     //Reposition the environment around spaceship.
-    environment->getParams()->position = spaceship->getParams()->position;
+    if (spaceship->getParams() == nullptr) {
+        environment->getParams()->position = Vec3f();
+    } else {
+        environment->getParams()->position = spaceship->getParams()->position;
+    }
+    
     
     environment->Draw();
     spacestation->Draw();
@@ -78,70 +91,88 @@ void SpaceBlasters::update(double ticks)
     
     collisionDetection();
     spawner->SpawnIfNecessary(ticks);
-    if (health <= 0){ restart(); }
+    if (health <= 0){
+        gamestate = sb_GAMESTATE_GAMEOVER;
+        stopGame();
+    }
 }
 
 void SpaceBlasters::handleKeyboard(double ticks){
-    if (keyboard->keys[int('a')]){ // key: a
-        spaceship->getParams()->rotation.w += (ticks / 20.0f);
-    }
-    if (keyboard->keys[int('d')]){ // key: d
-        spaceship->getParams()->rotation.w -= (ticks / 20.0f);
-    }
-    
-    if (keyboard->keys[int('w')]){ // key: w
-        spaceship->getParams()->movement.z = 1;
-    } else {
-        spaceship->getParams()->movement.z = 0;
-    }
-    
-    if (keyboard->keys[int('q')]){ // key: q
-        angle += (ticks / 20.0f);
-    }
-    if (keyboard->keys[int('e')]){ // key: e
-        angle -= (ticks / 20.0f);
-    }
-    if (keyboard->keys[32]){ // spacebar
-        keyboard->keys[32] = false; // Disable key
-        shootProjectile();
-    }
-    
-    if (keyboard->keys[int('p')]){ // key: p
-        keyboard->keys[int('p')] = false; // Disable key
+    if (gamestate == sb_GAMESTATE_PLAYING){
+        if (keyboard->keys[int('a')]){ // key: a
+            spaceship->getParams()->rotation.w += (ticks / 20.0f);
+        }
+        if (keyboard->keys[int('d')]){ // key: d
+            spaceship->getParams()->rotation.w -= (ticks / 20.0f);
+        }
         
-        GameObjectParams* params = new GameObjectParams();
-        params->active = true;
-        params->position = Vec3f();
-        params->rotation = Vec4f(0.3f, 0.1f, 0.2f, 0.0f);
-        asteroids->Spawn(params);
+        if (keyboard->keys[int('w')]){ // key: w
+            spaceship->getParams()->movement.z = 1;
+        } else {
+            spaceship->getParams()->movement.z = 0;
+        }
+        
+        if (keyboard->keys[int('q')]){ // key: q
+            angle += (ticks / 20.0f);
+        }
+        if (keyboard->keys[int('e')]){ // key: e
+            angle -= (ticks / 20.0f);
+        }
+        if (keyboard->keys[32]){ // spacebar
+            keyboard->keys[32] = false; // Disable key
+            shootProjectile();
+        }
+        
+        if (keyboard->keys[int('p')]){ // key: p
+            keyboard->keys[int('p')] = false; // Disable key
+            spawner->Spawn();
+        }
+    } else {
+        if (keyboard->keys[32]){ // spacebar
+            keyboard->keys[32] = false; // Disable key
+            gamestate = sb_GAMESTATE_PLAYING;
+            restart();
+        }
     }
-    
-    if (keyboard->keys[int('c')]){
-        keyboard->keys[int('c')] = false;
-        followCam = !followCam;
-    }
+//    if (keyboard->keys[int('c')]){
+//        keyboard->keys[int('c')] = false;
+//        followCam = !followCam;
+//    }
 }
 
 void SpaceBlasters::updateCamera(){
-    if (followCam){
-        Vec3f pos = spaceship->getParams()->position;
+    if (gamestate == sb_GAMESTATE_PLAYING){
+        if (followCam){
+            Vec3f pos = spaceship->getParams()->position;
+            float radius = 10.0f;
+            pos.x += (sin(AsRadian(spaceship->getParams()->rotation.w + 180)) * radius);
+            pos.y += 3.0f;
+            pos.z += (cos(AsRadian(spaceship->getParams()->rotation.w + 180)) * radius);
+            camera->setPosition(pos);
+            
+            Vec3f lookAt = spaceship->getParams()->position;
+            lookAt.y += 2.0f;
+            camera->setLookAt(lookAt);
+        } else {
+            camera->setLookAt(Vec3f());
+            Vec3f pos = Vec3f();
+            float radius = 10.0f;
+            pos.x += (sin(AsRadian(angle + 180)) * radius);
+            pos.z += (cos(AsRadian(angle + 180)) * radius);
+            pos.y += 0.0f;
+            camera->setPosition(pos);
+        }
+    } else {
+        Vec3f pos = spaceship_initial_position;
         float radius = 10.0f;
-        pos.x += (sin(AsRadian(spaceship->getParams()->rotation.w + 180)) * radius);
+        pos.x += (sin(AsRadian(spaceship_initial_rotation.w + 180)) * radius);
         pos.y += 3.0f;
-        pos.z += (cos(AsRadian(spaceship->getParams()->rotation.w + 180)) * radius);
+        pos.z += (cos(AsRadian(spaceship_initial_rotation.w + 180)) * radius);
         camera->setPosition(pos);
         
-        Vec3f lookAt = spaceship->getParams()->position;
+        Vec3f lookAt = spaceship_initial_position;
         lookAt.y += 2.0f;
         camera->setLookAt(lookAt);
-    } else {
-        camera->setLookAt(Vec3f());
-        Vec3f pos = Vec3f();
-        float radius = 10.0f;
-        pos.x += (sin(AsRadian(angle + 180)) * radius);
-        pos.z += (cos(AsRadian(angle + 180)) * radius);
-        pos.y += 0.0f;
-        camera->setPosition(pos);
     }
 }
 
@@ -206,5 +237,37 @@ void SpaceBlasters::collisionDetection(void){
     }
 }
 
+void SpaceBlasters::drawHud(void){
+    int const h = glutGet(GLUT_WINDOW_HEIGHT);
+    //int const w = glutGet(GLUT_WINDOW_WIDTH);
+    int x = 0;
+    int y = 0;
+    
+    if (gamestate == sb_GAMESTATE_NOGAME || gamestate == sb_GAMESTATE_GAMEOVER) {
+        y = h / 12;
+        
+        if (gamestate == sb_GAMESTATE_NOGAME) {
+            Texthelper::ShowText("SpaceBlasters", 72, 350, y*9);
+            Texthelper::ShowText("Press spacebar to start!", 48, 310, y*2);
+        } else if (gamestate == sb_GAMESTATE_GAMEOVER) {
+            Texthelper::ShowText("GAME OVER :(", 72, 350, y*9);
+            Texthelper::ShowText("Press spacebar to start a new game", 48, 160, y*2);
+        }
+    }
+    
+    
+    if (gamestate == sb_GAMESTATE_PAUSED || gamestate == sb_GAMESTATE_PLAYING)
+    {
+        std::ostringstream healthString;
+        healthString << "SpaceStation health: " << health << "hp";
+        const std::string tmp = healthString.str();
+        y = h - 20;
+        x = 10;
+        
+        Texthelper::ShowText(tmp, 14, x, y);
+    }
+}
+
 // The call below will suspend OpenGL execution; we need anoter way...
 //system("afplay /Users/jordysipkema/Downloads/SpaceBlasters/Assets/Audio/Biem.mp3");
+
