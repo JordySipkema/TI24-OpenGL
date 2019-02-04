@@ -14,6 +14,7 @@ SpaceShip::SpaceShip(Vec3f position, Vec4f rotation, float scaleFactor = 1) :
 //GameObject(position, rotation, scaleFactor, "models/fightership/13897_Sci-Fi_Fighter_Ship_v1_l1.obj")
     SingularGameObject(position, rotation, scaleFactor, "spacecraft/spacecraft.obj")
 {
+    collisionRadius = 1.0f;
 }
 
 void SpaceShip::Update(float ticks){

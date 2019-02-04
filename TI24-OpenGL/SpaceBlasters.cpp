@@ -12,7 +12,7 @@
 #define default_camera_rotation Vec4f(0,1,0,0)
 #define spaceship_initial_position Vec3f(0,0,-20)
 #define spaceship_initial_rotation Vec4f(0,1,0,50)
-#define spaceship_tilt_max_angle 25.0f
+#define spaceship_tilt_max_angle 20.0f
 
 #include <cmath>
 #include <cstdlib>
@@ -251,7 +251,7 @@ void SpaceBlasters::collisionDetection(void){
         
         // Check collission with spaceship:
         distanceVect = asteroid->position - spacestation->getParams()->position;
-        if (abs(distanceVect.length()) <= asteroids->collisionRadius + spacestation->collisionRadius){
+        if (abs(distanceVect.length()) <= asteroids->collisionRadius + spaceship->collisionRadius){
             asteroid->active = false;
             health -= sb_SHIP_DAMAGE;
             std::cout << "WARNING: Your ship will be damaged if you do this!" << std::endl;
